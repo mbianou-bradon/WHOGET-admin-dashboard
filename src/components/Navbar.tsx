@@ -5,7 +5,7 @@ import Link from "next/link"
 export default function Navbar(){
 
     return (
-        <header className="h-screen w-[10rem] bg-[#EFEFEF] ml-[1.6rem] pt-[3.25rem] fixed">
+        <header className="h-screen w-[12rem] bg-secondary ml-[1.6rem] pt-[3.25rem] fixed">
             {/* Logo of WhoGet */}
             <div className="logo mb-[4rem] p-2">
                 <Image src={logo} alt="" />
