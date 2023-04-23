@@ -7,7 +7,7 @@ export default function Users(){
     return (
         <div className="ml-[13rem] px-6">
             <table className="w-full">
-                <thead className="h-16">
+                <thead className="h-16 border-b border-[#EEEEEE]">
                     <tr className="text-left">
                         <th className="w-[5%]">
                             <BsSquare />
@@ -31,7 +31,7 @@ export default function Users(){
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody className="[&>*]:border-b [&>*]:border-[#EEEEEE]">
                     <tr>
                         <td>
                             <BsSquare />

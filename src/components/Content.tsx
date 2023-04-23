@@ -5,7 +5,7 @@ export default function Content(){
     return (
         <div className="ml-[13rem] px-6">
             <table className="w-full">
-                <thead className="h-16">
+                <thead className="h-16 border-b border-[#EEEEEE]">
                     <tr className="text-left">
                         <th className="w-[50%]">
                            Question
@@ -21,7 +21,7 @@ export default function Content(){
                 </thead>
 
                 <tbody>
-                    <tr>
+                    <tr className="border-b border-[#EEEEEE]">
                         <td>
                             <div className="py-5">
                                 <div className="text-sm mb-4 w-[85%]">
@@ -59,7 +59,7 @@ export default function Content(){
                             
                         </td>
                     </tr>
-                     <tr>
+                    <tr className="border-b border-[#EEEEEE]">
                         <td>
                             <div className="py-5">
                                 <div className="text-sm mb-4 w-[85%]">
@@ -97,7 +97,7 @@ export default function Content(){
                             
                         </td>
                     </tr>
-                     <tr>
+                    <tr className="border-b border-[#EEEEEE]">
                         <td>
                             <div className="py-5">
                                 <div className="text-sm mb-4 w-[85%]">
@@ -135,7 +135,7 @@ export default function Content(){
                             
                         </td>
                     </tr>
-                     <tr>
+                    <tr className="border-b border-[#EEEEEE]">
                         <td>
                             <div className="py-5">
                                 <div className="text-sm mb-4 w-[85%]">

@@ -11,8 +11,8 @@ export default function Home() {
     <div className=" bg-white text-slate-900">
       <Navbar />
       <Header/>
-      {/* <Users/> */}
-      <Content/>
+      <Users/>
+      {/* <Content/> */}
     </div>
   )
 }
