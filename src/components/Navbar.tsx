@@ -13,37 +13,32 @@ export default function Navbar(){
 
             {/* Navigation Area */}
             <nav>
-                <ul className="p-2 [&>*]:px-2 [&>*]:py-2 [&>*]:mb-2 [&>*:hover]:bg-primary/20 [&>*]:rounded-lg">
-                    <li>
-                        <Link href="">
-                            Users
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="">
-                            Content
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="">
-                            Analytics
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="">
-                            Moderation
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="">
-                            Reporting
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="">
-                            Communication
-                        </Link>
-                    </li>
+                <ul className="p-2 [&>*]:block [&>*]:px-2 [&>*]:py-3 [&>*]:mb-2 [&>*:hover]:bg-primary/20 [&>*]:rounded-lg">
+
+                    <Link href="">
+                        Users
+                    </Link>
+
+                    <Link href="">
+                        Content 
+                    </Link>
+
+                    <Link href="">
+                        Analytics
+                    </Link>
+
+                    <Link href="">
+                        Moderation
+                    </Link>
+
+                    <Link href="">
+                        Reporting
+                    </Link>
+
+                    <Link href="">
+                        Communication
+                    </Link>
+
                 </ul>
             </nav>
         </header>

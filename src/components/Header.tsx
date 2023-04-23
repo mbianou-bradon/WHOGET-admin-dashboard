@@ -6,10 +6,10 @@ import { BsSearch } from "react-icons/bs"
 export default function Header(){
 
     return (
-        <div className="bg-white ml-[11.6rem] h-screen py-6 pr-6">
+        <div className="bg-white ml-[11.6rem] h-full py-6 pr-6">
             <div className="flex justify-between items-center mb-[1.5rem]">
                 <div className="w-3/4 mx-auto">
-                    <div className="flex justify-around [&>*]:flex [&>*]:flex-col [&>*]:items-center [&>*>h2]:text-4xl [&>*>p]:text-sm">
+                    <div className="flex justify-around [&>*]:flex [&>*]:flex-col [&>*]:items-center [&>*>h2]:text-4xl [&>*>h2]:font-semibold [&>*>p]:text-sm">
                         <div>
                             <h2>872</h2>
                             <p>users</p>
