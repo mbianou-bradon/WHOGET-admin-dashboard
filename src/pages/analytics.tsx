@@ -57,7 +57,7 @@ export default function Analytics(){
                                     <h2>Active engagement</h2>
                                     <p>80%</p>
                                 </div>
-                                <p>This measures how often users using the app, such as the number of times they've logged in or the frequency of their interactions with other users</p>
+                                <p>This measures how often users using the app, such as the number of times they have logged in or the frequency of their interactions with other users</p>
                             </div>
 
                             <div>
