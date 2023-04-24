@@ -1,8 +1,11 @@
 import Image from "next/image"
 import logo from "../assets/images/logo.png"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 export default function Navbar(){
+
+    const router = useRouter();
 
     return (
         <header className="h-screen w-[12rem] bg-secondary ml-[1.6rem] pt-[3.25rem] fixed">
@@ -15,27 +18,27 @@ export default function Navbar(){
             <nav>
                 <ul className="p-2 [&>*]:block [&>*]:px-2 [&>*]:py-3 [&>*]:mb-2 [&>*:hover]:bg-primary/20 [&>*]:rounded-lg">
 
-                    <Link href="">
+                    <Link href={"/"} className={router.pathname==="/"? "bg-primary/20": "bg-transparent"}>
                         Users
                     </Link>
 
-                    <Link href="">
+                    <Link href={"/content"} className={router.pathname==="/content"? "bg-primary/20": "bg-transparent"}>
                         Content 
                     </Link>
 
-                    <Link href="">
+                    <Link href={"/analytics"} className={router.pathname==="/analytics"? "bg-primary/20": "bg-transparent"}>
                         Analytics
                     </Link>
 
-                    <Link href="">
+                    <Link href={"/moderation"} className={router.pathname==="/moderation"? "bg-primary/20": "bg-transparent"}>
                         Moderation
                     </Link>
 
-                    <Link href="">
+                    <Link href={"/reporting"} className={router.pathname==="/reporting"? "bg-primary/20": "bg-transparent"}>
                         Reporting
                     </Link>
 
-                    <Link href="">
+                    <Link href={"/communication"} className={router.pathname==="/communication"? "bg-primary/20": "bg-transparent"}>
                         Communication
                     </Link>
 
