@@ -6,10 +6,10 @@ import Header from "./Header";
 export default function Layout(props: { children: ReactNode}){
 
     return (
-        <div className="bg-white text-slate-900">
+        <div className="bg-white text-slate-900 w-screen">
             <Navbar />
             <Header/>
-            <div className="h-screen">
+            <div className="h-full sm:ml-[11.6rem]">
                 { props.children }
             </div>
             

@@ -1,238 +1,126 @@
-import { BsSquare } from "react-icons/bs"
-import { AiOutlineThunderbolt } from "react-icons/ai"
-import { HiOutlineBan } from "react-icons/hi"
+import { BsSquare } from "react-icons/bs";
+import React from "react";
+import client from "@/axios/axios";
+import UserComponent from "@/components/UserComponent";
+import { UserType } from "@/dataTypes";
+import Loading from "@/components/Loading";
+import { FaLessThan, FaGreaterThan } from "react-icons/fa";
 
-export default function Users(){
+export default function Users() {
+  const [users, setUsers] = React.useState<UserType[]>([]);
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
+  const [page, setPage] = React.useState(1);
+  const [limit, setLimit] = React.useState(5);
 
-    return (
-        <div className="ml-[13rem] px-6">
-            <table className="w-full">
-                <thead className="h-16 border-b border-[#EEEEEE]">
-                    <tr className="text-left">
-                        <th className="w-[5%]">
-                            <BsSquare />
-                        </th>
-                        <th className="w-[25%]">
-                            User
-                        </th>
-                        <th className="w-[10%]">
-                            Status
-                        </th>
-                        <th className="w-[15%]">
-                            Phone Number
-                        </th>
-                        <th className="w-[15%]">
-                            No of Asks
-                        </th>
-                        <th className="w-[15%]">
-                            No of Strikes
-                        </th>
-                        <th className="w-[15%]"></th>
-                    </tr>
-                </thead>
+  React.useEffect(() => {
+    const users = client.get(`/users?limit=${limit}`);
+    users
+      .then((response) => {
+        const data = response.data.users;
+        // console.log(data);
+        setUsers(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error(err)
+        setIsLoading(false);
+    });
+  }, []);
 
-                <tbody className="[&>*]:border-b [&>*]:border-[#EEEEEE]">
-                    <tr>
-                        <td>
-                            <BsSquare />
-                        </td>
-                        <td>
-                            <div className="flex items-center gap-1">
-                                <div className="w-8 h-8 rounded-full bg-primary/20">
+  let prevPageBtnStyles = "cursor-pointer hover:bg-primary flex";
+  let nextPageBtnStyles = "cursor-pointer hover:bg-primary flex";
+  if (page === 1)
+    prevPageBtnStyles = "cursor-not-allowed hover:bg-primary/20 hidden";
+  if (users.length < limit)
+    nextPageBtnStyles = "cursor-not-allowed hover:bg-primary/20 hidden";
 
-                                </div>
-                                <h2>Mbianou Bradon</h2>
-                            </div>
-                            
-                        </td>
-                        <td>
-                            Active
-                        </td>
-                        <td>
-                            671 242 032
-                        </td>
-                        <td>
-                            15
-                        </td>
-                        <td>
-                            0
-                        </td>
-                        <td>
-                            <div className="py-5 [&>*]:flex [&>*]:items-center [&>*]:justify-center [&>*]:gap-1 [&>*]:rounded-full [&>*]:h-[1.625rem] [&>*]:cursor-pointer [&>*:active]:scale-95">
-                                <div className="text-white bg-primary mb-2">
-                                    <AiOutlineThunderbolt className="text-xl"/>
-                                    <h2>Strike</h2>
-                                </div>
-                                <div className="border border-primary text-primary">
-                                    <HiOutlineBan />
-                                    <h2>Ban</h2>
-                                </div>
-                            </div>
-                            
-                        </td>
-                    </tr>
+  const handlePrevPage = () => {
+    if (page === 1) {
+      alert("You can't go back, you are in the first page already!");
+    } else {
+      setPage((prevPage: number) => prevPage - 1);
+    }
+  };
+  const handleNextPage = () => {
+    if (users.length < limit) {
+      alert("You have reached the end. You can't go to the Next page");
+    } else {
+      setPage((prevPage: number) => prevPage + 1);
+    }
+  };
 
-                    <tr>
-                        <td>
-                            <BsSquare />
-                        </td>
-                        <td>
-                            <div className="flex items-center gap-1">
-                                <div className="w-8 h-8 rounded-full bg-primary/20">
+  return isLoading ? (
+    <Loading />
+    ) : (
+    <>
+    
+      <div className=" px-6">
+        <table className="w-full">
+          <thead className="h-16 border-b border-[#EEEEEE]">
+            <tr className="text-left">
+              <th className="w-[5%] hidden md:table-cell">
+                <BsSquare />
+              </th>
+              <th className="w-[50%] sm:w-[25%]">User</th>
+              <th className="w-[10%] hidden md:table-cell">Status</th>
+              <th className="w-[15%] hidden sm:table-cell">Phone Number</th>
+              <th className="w-[15%] hidden md:table-cell">No of Asks</th>
+              <th className="w-[15%] hidden md:table-cell">No of Strikes</th>
+              <th className="w-[15%]"></th>
+            </tr>
+          </thead>
 
-                                </div>
-                                <h2>Kimboh Lovette</h2>
-                            </div>
-                            
-                        </td>
-                        <td>
-                            Active
-                        </td>
-                        <td>
-                            671 242 032
-                        </td>
-                        <td>
-                            40
-                        </td>
-                        <td>
-                            2
-                        </td>
-                        <td>
-                            <div className="py-5 [&>*]:flex [&>*]:items-center [&>*]:justify-center [&>*]:gap-1 [&>*]:rounded-full [&>*]:h-[1.625rem] [&>*]:cursor-pointer [&>*:active]:scale-95">
-                                <div className="text-white bg-primary mb-2">
-                                    <AiOutlineThunderbolt className="text-xl"/>
-                                    <h2>Strike</h2>
-                                </div>
-                                <div className="border border-primary text-primary">
-                                    <HiOutlineBan />
-                                    <h2>Ban</h2>
-                                </div>
-                            </div>
-                            
-                        </td>
-                    </tr>
+            
+            <tbody className="[&>*]:border-b [&>*]:border-[#EEEEEE]">
+            {users.length > 0 ? (
+            
+              users.map((user) => {
+                return (
+                  <UserComponent
+                    username={user.username}
+                    strikes={user.strikes}
+                    _id={user._id}
+                    profileImage={user.profileImage}
+                    age={user.age}
+                    phoneNumber={user.phoneNumber}
+                    email={user.email}
+                    ban={user.ban}
+                    location={{
+                      town: "",
+                      country: "",
+                    }}
+                  />
+                );
+              })
+            )
+           : (
+            <>
+                <td></td>
+                <div>
+                    <p>No users to display</p>
+                </div>
+            </>
+           
+            )}
+            </tbody>
+            
+        </table>
 
-                    <tr>
-                        <td>
-                            <BsSquare />
-                        </td>
-                        <td>
-                            <div className="flex items-center gap-1">
-                                <div className="w-8 h-8 rounded-full bg-primary/20">
-
-                                </div>
-                                <h2>Samba Carlson</h2>
-                            </div>
-                            
-                        </td>
-                        <td>
-                            Away
-                        </td>
-                        <td>
-                            671 242 032
-                        </td>
-                        <td>
-                            8
-                        </td>
-                        <td>
-                            0
-                        </td>
-                        <td>
-                            <div className="py-5 [&>*]:flex [&>*]:items-center [&>*]:justify-center [&>*]:gap-1 [&>*]:rounded-full [&>*]:h-[1.625rem] [&>*]:cursor-pointer [&>*:active]:scale-95">
-                                <div className="text-white bg-primary mb-2">
-                                    <AiOutlineThunderbolt className="text-xl"/>
-                                    <h2>Strike</h2>
-                                </div>
-                                <div className="border border-primary text-primary">
-                                    <HiOutlineBan />
-                                    <h2>Ban</h2>
-                                </div>
-                            </div>
-                            
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <BsSquare />
-                        </td>
-                        <td>
-                            <div className="flex items-center gap-1">
-                                <div className="w-8 h-8 rounded-full bg-primary/20">
-
-                                </div>
-                                <h2>Estella Shembom</h2>
-                            </div>
-                            
-                        </td>
-                        <td>
-                            Active
-                        </td>
-                        <td>
-                            671 242 032
-                        </td>
-                        <td>
-                            21
-                        </td>
-                        <td>
-                            0
-                        </td>
-                        <td>
-                            <div className="py-5 [&>*]:flex [&>*]:items-center [&>*]:justify-center [&>*]:gap-1 [&>*]:rounded-full [&>*]:h-[1.625rem] [&>*]:cursor-pointer [&>*:active]:scale-95">
-                                <div className="text-white bg-primary mb-2">
-                                    <AiOutlineThunderbolt className="text-xl"/>
-                                    <h2>Strike</h2>
-                                </div>
-                                <div className="border border-primary text-primary">
-                                    <HiOutlineBan />
-                                    <h2>Ban</h2>
-                                </div>
-                            </div>
-                            
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <BsSquare />
-                        </td>
-                        <td>
-                            <div className="flex items-center gap-1">
-                                <div className="w-8 h-8 rounded-full bg-primary/20">
-
-                                </div>
-                                <h2>Mbeute Olive</h2>
-                            </div>
-                            
-                        </td>
-                        <td>
-                            Away
-                        </td>
-                        <td>
-                            671 242 032
-                        </td>
-                        <td>
-                            5
-                        </td>
-                        <td>
-                            0
-                        </td>
-                        <td>
-                            <div className="py-5 [&>*]:flex [&>*]:items-center [&>*]:justify-center [&>*]:gap-1 [&>*]:rounded-full [&>*]:h-[1.625rem] [&>*]:cursor-pointer [&>*:active]:scale-95">
-                                <div className="text-white bg-primary mb-2">
-                                    <AiOutlineThunderbolt className="text-xl"/>
-                                    <h2>Strike</h2>
-                                </div>
-                                <div className="border border-primary text-primary">
-                                    <HiOutlineBan />
-                                    <h2>Ban</h2>
-                                </div>
-                            </div>
-                            
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div className="flex justify-end">
+          <div className="w-fit border rounded-md flex justify-around gap-2 border-primary text-xs sm:text-sm [&>*]:w-10 [&>*]:sm:w-20 [&>*]:py-2 [&>*]:sm:py-4 [&>*]:justify-center [&>*:hover]:text-white my-5">
+            <div onClick={handlePrevPage} className={prevPageBtnStyles}>
+              <p className="text-center">
+                <FaLessThan />
+              </p>
+            </div>
+            <div onClick={handleNextPage} className={nextPageBtnStyles}>
+              <p>
+                <FaGreaterThan />
+              </p>
+            </div>
+          </div>
         </div>
-    )
+      </div>
+    </>
+  );
 }
