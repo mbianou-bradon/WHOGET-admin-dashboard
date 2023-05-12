@@ -8,7 +8,7 @@ export default function Navbar(){
     const router = useRouter();
 
     return (
-        <header className="h-screen w-[12rem] bg-secondary ml-[1.6rem] pt-[3.25rem] fixed">
+        <header className="h-[95vh] w-[12rem] bg-secondary pt-[3.25rem] hidden sm:block fixed">
             {/* Logo of WhoGet */}
             <div className="logo mb-[4rem] p-2">
                 <Image src={logo} alt="" />
@@ -26,7 +26,7 @@ export default function Navbar(){
                         Content 
                     </Link>
 
-                    <Link href={"/analytics"} className={router.pathname==="/analytics"? "bg-primary/20": "bg-transparent"}>
+                    {/* <Link href={"/analytics"} className={router.pathname==="/analytics"? "bg-primary/20": "bg-transparent"}>
                         Analytics
                     </Link>
 
@@ -40,7 +40,7 @@ export default function Navbar(){
 
                     <Link href={"/communication"} className={router.pathname==="/communication"? "bg-primary/20": "bg-transparent"}>
                         Communication
-                    </Link>
+                    </Link> */}
 
                 </ul>
             </nav>
