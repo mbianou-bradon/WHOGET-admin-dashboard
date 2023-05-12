@@ -9,12 +9,15 @@ import logo from "../assets/images/logo.png";
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter} from "next/router"
+import { signOut } from "firebase/auth"
+import { auth } from "@/config/firebaseConfig"
 
 export default function Header(){
     const router = useRouter();
     const [users, setUsers] = React.useState<UserType[]>([])
     const [askCategories, setAskCategories] = React.useState<AskType[]>([])
     const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
+    const [viewMoreIsOpen, setViewMoreIsOpen] = React.useState<boolean>(false);
 
     React.useEffect(() =>{
         const users = client.get("/users")
@@ -44,6 +47,23 @@ export default function Header(){
     const handleMobileMenu = () => {
         setIsMenuOpen((prevState)=> !prevState);
     }
+    const handleViewMore = () => {
+        setViewMoreIsOpen((prevState)=> !prevState);
+    }
+
+    const handleLogOut = () => {
+        signOut(auth)
+        .then(()=>{
+            localStorage.removeItem("@jwtToken")
+            router.replace("/login");
+        });
+    }
+
+
+
+
+
+
 
     return (
         <div className="bg-white sm:ml-[11.6rem] h-fit py-6 sm:pr-6">
@@ -59,7 +79,7 @@ export default function Header(){
                 { isMenuOpen && 
                 <div className="shadow-inner" >
                     <nav>
-                        <ul className="p-2 [&>*]:block [&>*]:px-2 [&>*]:py-3 [&>*]:mb-2 [&>*:hover]:bg-primary/20 [&>*]:rounded-lg">
+                        <ul className="p-2 [&>*]:block [&>*]:px-2 [&>*]:py-3 [&>*]:mb-2 [&>Link:hover]:bg-primary/20 [&>*]:rounded-lg">
 
                             <Link href={"/"} className={router.pathname==="/"? "bg-primary/20": "bg-transparent"} onClick={handleMobileMenu}>
                                 Users
@@ -84,7 +104,17 @@ export default function Header(){
                             <Link href={"/communication"} className={router.pathname==="/communication"? "bg-primary/20": "bg-transparent"}>
                                 Communication
                             </Link> */}
-
+                            <div className=" justify-between">
+                                <div className="flex">
+                                    <p>Admin</p>
+                                    <div className="place-self-center">
+                                        <RxPerson />
+                                    </div>
+                                </div>
+                                <div className="w-fit px-4 py-2 bg-red-600 text-white rounded-md cursor-pointer" onClick={handleLogOut}> 
+                                    <p>Logout</p>
+                                </div>
+                            </div>
                         </ul>
                     </nav>
                 </div>
@@ -122,13 +152,20 @@ export default function Header(){
                                 <div className="text-xl">
                                     <RxPerson />
                                 </div>
-                                <div>
+                                <div className="relative" onClick={handleViewMore}>
                                     <div className="flex">
                                         <p>Admin</p>
                                         <div className="place-self-center">
                                             <AiOutlineDown className="text-xs"/>
                                         </div>
                                     </div>
+                                    { viewMoreIsOpen &&
+                                    <div className="absolute -left-14 bg-white shadow-sm shadow-primary w-32 h-14 flex items-center justify-center rounded-md">
+                                        <div className="px-4 py-2 bg-red-600 text-white rounded-md cursor-pointer" onClick={handleLogOut}> 
+                                            <p>Logout</p>
+                                        </div>
+                                    </div>
+                                    }
                                 </div>
                             </div>
                         </div>

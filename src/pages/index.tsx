@@ -5,26 +5,35 @@ import UserComponent from "@/components/UserComponent";
 import { UserType } from "@/dataTypes";
 import Loading from "@/components/Loading";
 import { FaLessThan, FaGreaterThan } from "react-icons/fa";
+import { useRouter } from "next/router";
 
 export default function Users() {
   const [users, setUsers] = React.useState<UserType[]>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
   const [page, setPage] = React.useState(1);
   const [limit, setLimit] = React.useState(5);
+  const router = useRouter();
 
   React.useEffect(() => {
-    const users = client.get(`/users?limit=${limit}`);
-    users
-      .then((response) => {
-        const data = response.data.users;
-        // console.log(data);
-        setUsers(data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.error(err)
-        setIsLoading(false);
-    });
+    const jwtToken = JSON.parse(localStorage.getItem("@jwtToken") as string);
+    if (!jwtToken){
+      router.replace("/login")
+    }
+    else {
+      const users = client.get(`/users?limit=${limit}`);
+      users
+        .then((response) => {
+          const data = response.data.users;
+          // console.log(data);
+          setUsers(data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          console.error(err)
+          setIsLoading(false);
+      });
+    }
+    
   }, []);
 
   let prevPageBtnStyles = "cursor-pointer hover:bg-primary flex";

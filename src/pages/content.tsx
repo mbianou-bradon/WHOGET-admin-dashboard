@@ -2,6 +2,7 @@ import client from "@/axios/axios";
 import AskComponent from "@/components/AskComponent";
 import Loading from "@/components/Loading";
 import { AskType } from "@/dataTypes";
+import { useRouter } from "next/router";
 import React from "react";
 import { FaGreaterThan, FaLessThan } from "react-icons/fa";
 
@@ -10,8 +11,14 @@ export default function Content() {
   const [page, setPage] = React.useState(1);
   const [limit, setLimit] = React.useState(5);
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
+  const router = useRouter();
 
   React.useEffect(() => {
+    const jwtToken = JSON.parse(localStorage.getItem("@jwtToken") as string);
+    if (!jwtToken){
+      router.replace("/login")
+    }
+    else {
     const asks = client.get(`/asks?category=&limit=5&page=${page}`);
     setIsLoading(true);
     asks
@@ -25,6 +32,7 @@ export default function Content() {
         console.log(err);
         setIsLoading(false);
       });
+    }
   }, [page]);
 
   let prevPageBtnStyles = "cursor-pointer hover:bg-primary flex";
