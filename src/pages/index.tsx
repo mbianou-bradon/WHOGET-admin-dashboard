@@ -34,7 +34,7 @@ export default function Users() {
       });
     }
     
-  }, []);
+  }, [limit, router]);
 
   let prevPageBtnStyles = "cursor-pointer hover:bg-primary flex";
   let nextPageBtnStyles = "cursor-pointer hover:bg-primary flex";
@@ -86,6 +86,7 @@ export default function Users() {
               users.map((user) => {
                 return (
                   <UserComponent
+                    key={user._id}
                     username={user.username}
                     strikes={user.strikes}
                     _id={user._id}

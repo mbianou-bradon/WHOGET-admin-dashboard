@@ -33,7 +33,7 @@ export default function Content() {
         setIsLoading(false);
       });
     }
-  }, [page]);
+  }, [page, router]);
 
   let prevPageBtnStyles = "cursor-pointer hover:bg-primary flex";
   let nextPageBtnStyles = "cursor-pointer hover:bg-primary flex";
