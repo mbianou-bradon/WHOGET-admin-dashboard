@@ -9,7 +9,6 @@ export default function AskComponent(ask: { _id:string; message: string ; catego
 
 
     const id = ask._id;
-    console.log(id);
 
     const handleHideAsk = () => {
     setIsLoading(true);
@@ -18,7 +17,7 @@ export default function AskComponent(ask: { _id:string; message: string ; catego
       visibility: !ask.visibility,
     });
     hideAsk.then((response) => {
-        console.log(response);
+      console.log("Ask Status changed Successfully")
         setIsLoading(false);
     }).catch((err)=>{
         console.log(err)

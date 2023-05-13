@@ -6,11 +6,12 @@ export interface AskType{
     location: string,
     report: number,
     visibility: boolean,
-    userInfo: {
-        _id: string,
-        userName: string,
-        userProfile : string
-    }
+    userId: string,
+    userName: string,
+    userProfile : string
+    userEmail :string,
+    userPhone: string,
+    userWhatsApp : string,
 
 }
 
@@ -19,10 +20,8 @@ export interface UserType {
     username: string,
     profileImage: string,
     age: number,
-    location: {
-        town: string,
-        country: string
-    },
+    town: string,
+    country: string,
     category: string[],
     phoneNumber: number,
     email: string,

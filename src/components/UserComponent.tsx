@@ -26,7 +26,6 @@ export default function UserComponent(user: {
     React.useState<boolean>(false);
 
   const id = user._id;
-  console.log(id);
 
   const handleStrikeUser = () => {
     setIsLoading(true);
@@ -36,7 +35,6 @@ export default function UserComponent(user: {
     });
     strikeUser
       .then((response) => {
-        console.log(response);
         setIsLoading(false);
       })
       .catch((err) => console.log(err));
@@ -50,7 +48,6 @@ export default function UserComponent(user: {
     });
     banUser
       .then((response) => {
-        console.log(response);
         setIsLoading(false);
       })
       .catch((err) => console.log(err));

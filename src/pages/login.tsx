@@ -34,12 +34,11 @@ export default function Login() {
     const handleSignInUser = async (event: { preventDefault: () => void } ) => {
         event.preventDefault();
 
-        console.log("email:",userEmail, "password:",userPassword);
         try {
             const user = await signInWithEmailAndPassword(
                 auth, userEmail, userPassword
             )
-            console.log(user);
+            console.log("user sign in success");
             setUserEmail("");
             setUserPassword("");
             setError(false);
