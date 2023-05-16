@@ -26,7 +26,7 @@ export default function Navbar(){
                         Content 
                     </Link>
 
-                    {/* <Link href={"/analytics"} className={router.pathname==="/analytics"? "bg-primary/20": "bg-transparent"}>
+                    <Link href={"/analytics"} className={router.pathname==="/analytics"? "bg-primary/20": "bg-transparent"}>
                         Analytics
                     </Link>
 
@@ -40,7 +40,7 @@ export default function Navbar(){
 
                     <Link href={"/communication"} className={router.pathname==="/communication"? "bg-primary/20": "bg-transparent"}>
                         Communication
-                    </Link> */}
+                    </Link>
 
                 </ul>
             </nav>
