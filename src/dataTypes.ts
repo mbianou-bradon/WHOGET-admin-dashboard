@@ -12,6 +12,7 @@ export interface AskType{
     userEmail :string,
     userPhone: string,
     userWhatsApp : string,
+    createdAt: string
 
 }
 

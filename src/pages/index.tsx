@@ -20,7 +20,7 @@ export default function Users() {
       router.replace("/login")
     }
     else {
-      const users = client.get(`/users?limit=${limit}`);
+      const users = client.get(`/users?limit=${limit}&page=${page}`);
       users
         .then((response) => {
           const data = response.data.users;
@@ -34,7 +34,7 @@ export default function Users() {
       });
     }
     
-  }, [limit, router]);
+  }, [limit, router,page]);
 
   let prevPageBtnStyles = "cursor-pointer hover:bg-primary flex";
   let nextPageBtnStyles = "cursor-pointer hover:bg-primary flex";

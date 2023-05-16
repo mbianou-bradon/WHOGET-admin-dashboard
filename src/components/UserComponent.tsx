@@ -4,6 +4,7 @@ import { BsSquare } from "react-icons/bs";
 import { HiOutlineBan } from "react-icons/hi";
 import Loading from "./Loading";
 import client from "@/axios/axios";
+import Image from "next/image";
 
 export default function UserComponent(user: {
   _id: string;
@@ -153,12 +154,19 @@ export default function UserComponent(user: {
             </td>
             <td>
               <div className="flex items-center gap-1">
-                <div className="w-8 h-8 rounded-full bg-primary/20"></div>
+                <div className="w-8 h-8 rounded-full bg-primary/20">
+                  <Image
+                      src={user.profileImage} alt={""} 
+                      className="w-full h-full rounded-full"   
+                      width={32}    
+                      height={32}           
+                  />
+                </div>
                 <h2 className="text-sm sm:text-[1rem]">{user.username}</h2>
               </div>
             </td>
-            <td className="hidden lg:table-cell">Active</td>
-            <td className="hidden md:table-cell">671 242 032</td>
+            <td className="hidden lg:table-cell">{user.ban? "Ban" : "Active"}</td>
+            <td className="hidden md:table-cell">{user.phoneNumber}</td>
             <td className="hidden md:table-cell">15</td>
             <td>{user.strikes}</td>
             <td className="pr-2">
@@ -172,7 +180,7 @@ export default function UserComponent(user: {
                 </div>
                 <div className="border border-primary text-primary" onClick={handleModalBan}>
                   <HiOutlineBan />
-                  <h2>Ban</h2>
+                  {user.ban? <h2>UnBan</h2> : <h2>Ban</h2>}
                 </div>
               </div>
             </td>
