@@ -73,7 +73,7 @@ export default function Users() {
               <th className="w-[50%] sm:w-[25%]">User</th>
               <th className="w-[10%] hidden md:table-cell">Status</th>
               <th className="w-[15%] hidden sm:table-cell">Phone Number</th>
-              <th className="w-[15%] hidden md:table-cell">No of Asks</th>
+              <th className="w-[15%] hidden md:table-cell">Email</th>
               <th className="w-[15%] hidden md:table-cell">No of Strikes</th>
               <th className="w-[15%]"></th>
             </tr>

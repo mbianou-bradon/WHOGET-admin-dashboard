@@ -167,7 +167,7 @@ export default function UserComponent(user: {
             </td>
             <td className="hidden lg:table-cell">{user.ban? "Ban" : "Active"}</td>
             <td className="hidden md:table-cell">{user.phoneNumber}</td>
-            <td className="hidden md:table-cell">15</td>
+            <td className="hidden md:table-cell text-xs pr-4">{user.email}</td>
             <td>{user.strikes}</td>
             <td className="pr-2">
               <div className="py-5 [&>*]:flex [&>*]:items-center [&>*]:justify-center [&>*]:gap-1 [&>*]:rounded-full [&>*]:h-[1.625rem] [&>*]:cursor-pointer [&>*:active]:scale-95">
