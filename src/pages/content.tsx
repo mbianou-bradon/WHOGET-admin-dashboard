@@ -82,8 +82,8 @@ export default function Content() {
                   _id={askData._id}
                   visibility={askData.visibility}
                   report={askData.report}
-                  username={askData.userName} createdAt={askData.createdAt} duration={askData.duration}  
-                  userProfile={askData.userProfile}              />
+                  user={askData.user} createdAt={askData.createdAt} duration={askData.duration}  
+                />
               );
             })
           ) : (

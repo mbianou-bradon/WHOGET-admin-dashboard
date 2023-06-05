@@ -32,11 +32,12 @@ export default function UserComponent(user: {
     setIsLoading(true);
 
     const strikeUser = client.patch(`/users/${id}`, {
-      strike: strike + 1,
+      strikes: strike + 1,
     });
     strikeUser
       .then((response) => {
         setIsLoading(false);
+        setIsModalOpen(false);
       })
       .catch((err) => console.log(err));
   };
@@ -50,9 +51,12 @@ export default function UserComponent(user: {
     banUser
       .then((response) => {
         setIsLoading(false);
+        setIsModalOpen(false);
+        setIsStrikeModalOpen(false)
       })
       .catch((err) => console.log(err));
   };
+  
 
   const handleModalStrike = () => {
     setIsModalOpen(true);

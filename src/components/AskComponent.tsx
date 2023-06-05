@@ -11,10 +11,15 @@ export default function AskComponent(ask: {
   category: string;
   visibility: boolean;
   report: number;
-  username: string;
+  user: {
+    username: string,
+    profileImage : string
+    email :string,
+    phoneNumber: string,
+    userWhatsapp : string,
+  },
   createdAt: string;
   duration: number;
-  userProfile: string
 }) {
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -34,7 +39,9 @@ export default function AskComponent(ask: {
     hideAsk
       .then((response) => {
         console.log("Ask Status changed Successfully");
+        setIsModalOpen(false);
         setIsLoading(false);
+
       })
       .catch((err) => {
         console.log(err);
@@ -57,7 +64,7 @@ export default function AskComponent(ask: {
             </p>
             <p>
               This ASK was posted by{" "}
-              <span className="text-primary">{ask.username}</span>
+              <span className="text-primary">{ask.user.username}</span>
             </p>
             <p className="text-xs my-2">
               This ASK has been reported{" "}
@@ -112,13 +119,13 @@ export default function AskComponent(ask: {
               <div className="flex items-center gap-1">
                 <div className="w-8 h-8 rounded-full bg-primary/20">
                    <Image
-                      src={ask.userProfile} alt={""} 
+                      src={ask.user.profileImage} alt={""} 
                       className="w-full h-full rounded-full"   
                       width={32}    
                       height={32}           
                   />
                 </div>
-                <h2>{ask.username}</h2>
+                <h2>{ask.user.username}</h2>
               </div>
             </td>
             <td>

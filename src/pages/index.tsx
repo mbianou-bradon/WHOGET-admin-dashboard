@@ -24,7 +24,7 @@ export default function Users() {
       users
         .then((response) => {
           const data = response.data.users;
-          // console.log(data);
+          console.log(data);
           setUsers(data);
           setIsLoading(false);
         })

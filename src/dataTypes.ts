@@ -6,12 +6,13 @@ export interface AskType{
     location: string,
     report: number,
     visibility: boolean,
-    userId: string,
-    userName: string,
-    userProfile : string
-    userEmail :string,
-    userPhone: string,
-    userWhatsApp : string,
+    user: {
+    username: string,
+    profileImage : string
+    email :string,
+    phoneNumber: string,
+    userWhatsapp : string,
+    },
     createdAt: string
 
 }
